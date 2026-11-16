@@ -1,0 +1,24 @@
+[package]
+name = "guardian-api"
+version = "0.1.0"
+edition = "2021"
+publish = false
+description = "HTTP API for the PQC Guardian platform"
+
+[dependencies]
+axum = { workspace = true }
+tokio = { workspace = true }
+sqlx = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+tower-http = { workspace = true }
+dotenvy = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+async-trait = { workspace = true }
+
+ guardian-core = { path = "../../crates/guardian-core" }
+crypto-discovery = { path = "../../crates/crypto-discovery" }
+quantum-risk = { path = "../../crates/quantum-risk" }
+pqc-intelligence = { path = "../../crates/pqc-intelligence" }
+migration-architect = { path = "../../crates/migration-architect" }

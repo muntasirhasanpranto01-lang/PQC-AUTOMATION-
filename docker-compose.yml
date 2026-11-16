@@ -1,0 +1,33 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: pqc_guardian
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-local-dev-only}
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d pqc_guardian"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  guardian-api:
+    build:
+      context: .
+      dockerfile: apps/guardian-api/Dockerfile
+    environment:
+      DATABASE_URL: postgres://postgres:${POSTGRES_PASSWORD:-local-dev-only}@postgres:5432/pqc_guardian
+      BIND_ADDRESS: 0.0.0.0:8080
+      RUST_LOG: info
+    ports:
+      - "127.0.0.1:8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  postgres-data:
