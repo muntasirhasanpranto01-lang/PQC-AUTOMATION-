@@ -1,0 +1,12 @@
+[package]
+name = "guardian-core"
+version = "0.1.0"
+edition = "2021"
+publish = false
+description = "Core domain models and orchestration primitives for the PQC Guardian platform"
+
+[dependencies]
+serde = { workspace = true }
+thiserror = { workspace = true }
+
+[dev-dependencies]

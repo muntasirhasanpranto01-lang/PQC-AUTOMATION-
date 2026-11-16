@@ -1,0 +1,11 @@
+[package]
+name = "pqc-intelligence"
+version = "0.1.0"
+edition = "2021"
+publish = false
+description = "PQC standards intelligence and algorithm recommendation support"
+
+[dependencies]
+serde = { workspace = true }
+thiserror = { workspace = true }
+guardian-core = { path = "../guardian-core" }

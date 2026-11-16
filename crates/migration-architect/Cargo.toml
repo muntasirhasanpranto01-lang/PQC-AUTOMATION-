@@ -1,0 +1,11 @@
+[package]
+name = "migration-architect"
+version = "0.1.0"
+edition = "2021"
+publish = false
+description = "Migration planning and upgrade strategy generation for the PQC Guardian platform"
+
+[dependencies]
+serde = { workspace = true }
+thiserror = { workspace = true }
+guardian-core = { path = "../guardian-core" }
